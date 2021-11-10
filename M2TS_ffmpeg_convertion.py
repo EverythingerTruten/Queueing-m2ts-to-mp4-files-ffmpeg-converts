@@ -21,7 +21,7 @@ for i in range(prinum):
     
     #Open CMD and input command
     os.chdir('{}'.format(path))
-    os.system('start /wait cmd /c ffmpeg -i input' + str(curnum) + '.m2ts -vcodec libx264 -crf 20 -acodec ac3 -vf "yadif" output' + str(curnum) + '.mp4'.format(curnum))
+    os.system('start /wait cmd /c ffmpeg -i input' + str(curnum) + '.m2ts -vcodec libx264 -crf 20 -acodec ac3 -vf "yadif" output' + str(curnum) + '.mp4')
 
     #Delete one instance of converted files
     curnum -= 1
