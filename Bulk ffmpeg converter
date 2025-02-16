@@ -1,0 +1,46 @@
+import os
+from discord_webhook import DiscordWebhook
+from tkinter import Tk
+from tkinter.filedialog import askopenfilenames
+
+root = Tk()
+root.withdraw()
+
+webhook_toggle = input('Do you want to be reminded of the convertion completing via Discord webhook? (y/n): ')
+if webhook_toggle == 'y':
+    webhook_url = input('Please paste in your discord webhook url: ')
+
+files = list(askopenfilenames(title='Select the files you want to convert to .mp4',
+                             filetypes=[
+                                 ('All supported formats', '*.mp4 *.avi *.mkv *.mov *.wmv *.flv *.webm *.m4v *.mpg *.mpeg *.3gp *.3g2 *.mxf *.ts *.mts *.m2ts *.vob *.ogv *.dv *.gif *.m2v'),
+                                 ('MP4 Video', '*.mp4'),
+                                 ('AVI Video', '*.avi'),
+                                 ('MKV Video', '*.mkv'),
+                                 ('QuickTime Movie', '*.mov'),
+                                 ('Windows Media Video', '*.wmv'),
+                                 ('Flash Video', '*.flv'),
+                                 ('WebM Video', '*.webm'),
+                                 ('M4V Video', '*.m4v'),
+                                 ('MPEG Video', '*.mpg *.mpeg'),
+                                 ('3GPP Video', '*.3gp *.3g2'),
+                                 ('Material Exchange Format', '*.mxf'),
+                                 ('MPEG Transport Stream', '*.ts *.mts *.m2ts'),
+                                 ('DVD Video Object', '*.vob'),
+                                 ('Ogg Video', '*.ogv'),
+                                 ('DV Video', '*.dv'),
+                                 ('GIF Animation', '*.gif'),
+                                 ('MPEG-2 Video', '*.m2v'),
+                                 ('All files', '*.*')
+                             ]))
+
+for i in files:
+    var = i.split('.')
+    converted_file_name = var[0] + '.mp4'
+    os.system('start /wait cmd /c ffmpeg -i '+ i + ' -vcodec libx264 -crf 20 -acodec ac3 -vf "yadif" ' + converted_file_name)
+
+print("Convertion finished")
+if webhook_toggle == 'y':
+    webhook = DiscordWebhook(url=webhook_url, content='Your convertion of ' + str(len(files)) + ' files has finished') #Write the webhook url here
+    response = webhook.execute()
+
+exit()
