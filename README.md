@@ -1,8 +1,5 @@
-# Queueing m2ts to mp4 files ffmpeg converts
-This python file uses ffmpeg and Windows Command Prompt to convert m2ts files (files used by camcorders) into mp4 without interlacing (other convertion programs create interlacing artifacts). Normally, when you use this method manually, you have to wait for a command to finish and input another convertion command. This script makes it so you just input the directory of the m2ts files, the number of them and then it automatically inputs the convertion commands.
+# Bulk ffmpeg converter
 
-This repository requires ffmpeg installed, which you can do by following this WikiHow tutorial: https://www.wikihow.com/Install-FFmpeg-on-Windows
+This program lets you queue and convert any files supported by ffmpeg to .mp4 with an option to give you a notification through discord webhooks. It was first designed to de-interlace .m2ts video.
 
-Obviously because of the usage of CMD commands, this repository only works on Windows.
-
-Python version used: 3.7.9 (Thonny) 
+This program requires ffmpeg installed, which you can do by following this WikiHow tutorial: https://www.wikihow.com/Install-FFmpeg-on-Windows
